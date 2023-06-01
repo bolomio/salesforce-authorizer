@@ -1,1 +1,1 @@
-export * from './src/index'
+export { makeSalesforceAuthorizer, SalesforceAuthorizer } from './src'

@@ -1,6 +1,6 @@
 {
   "include": ["src/**/*.ts",
-    "src/index.ts"
+    "index.ts"
   ],
   "exclude": ["*.spec.ts", "**/*.spec.ts"],
   "compilerOptions": {
