@@ -1,0 +1,52 @@
+import {
+    ClientCredentialFlowTokenResource,
+    makeAuthenticateWithClientCredentialFlow,
+} from './index'
+
+import got, { Got } from 'got'
+import nock, { disableNetConnect } from 'nock'
+
+beforeAll(() => {
+    disableNetConnect()
+})
+
+const baseUrl = 'https://bolo.example.com/'
+const authPath = '/services/oauth2/token'
+describe('authenticateWithClientCredentialFlow', () => {
+    const credentials = {
+        clientId: 'yourClientId',
+        clientSecret: 'yourClientSecret',
+    }
+
+    const gotInstance: Got = got.extend({
+        prefixUrl: baseUrl,
+    })
+
+    const authenticate = makeAuthenticateWithClientCredentialFlow({ gotInstance })
+
+    it('should authenticate to salesforce', async () => {
+        const tokenResource: ClientCredentialFlowTokenResource = {
+            access_token: 'koko-token',
+            instance_url: 'https://yourInstance.salesforce.com',
+            id: 'koko',
+            token_type: 'Bearer',
+            issued_at: '1234567890',
+            scope: 'full',
+            signature: 'bolo_koko',
+        }
+
+        nock(baseUrl).post(authPath).reply(200, tokenResource)
+
+        const token = await authenticate(credentials)
+
+        expect(token).toEqual(tokenResource)
+    })
+
+    it('should fail to authenticate to salesforce', async () => {
+        nock(baseUrl).post(authPath).reply(400, { message: 'oh no' })
+
+        await expect(async () => await authenticate(credentials)).rejects.toMatchInlineSnapshot(
+            `[HTTPError: Response code 400 (Bad Request)]`
+        )
+    })
+})
