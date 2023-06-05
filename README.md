@@ -1,6 +1,7 @@
 # [bolomio] Salesforce Authorizer
 
-[![npm version](https://badge.fury.io/js/%40bolomio%2Fsalesforce-authorizer.svg)](https://badge.fury.io/js/%40bolomio%2Fsalesforce-authorizer)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/bolomio/salesforce-authorizer)
+[![npm version](https://badge.fury.io/js/%40bolomio%2Fsalesforce-connector.svg)](https://www.npmjs.com/package/@bolomio/salesforce-authorizer)
 
 The @bolomio/salesforce-authorizer package is an open-source npm package that provides functions for authenticating with Salesforce using different authentication flows. It allows you to easily authenticate Salesforce instances in your Node.js applications.
 
