@@ -1,6 +1,6 @@
 {
   "name": "@bolomio/salesforce-authorizer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "functions to authorize to a salesforce org",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
